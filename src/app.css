@@ -1,0 +1,71 @@
+@font-face {
+    font-family: "Edda";
+    src: url("/fonts/EddaFilled.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Averia";
+    src: url("/fonts/AveriaSerifLibre-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  :root {
+    --site-padding: "16px";
+  
+    --font-heading: "Edda", serif;
+    --font-body: "Averia", serif;
+  
+    --dark-green: #3B5249;
+    --green: #95b285;
+    --light-green: #e0e7da;
+    --orange: #ff8f49;
+    --peach: #fff2eb;
+    --black: #26171c;
+    --white: #FCF7FF;
+  }
+  
+  body {
+    font-family: var(--font-body);
+    color: var(--black);
+    background-color: var(--white);
+    padding: 1em;
+  }
+  
+  h1 {
+    font-family: var(--font-heading);
+    font-size: 4em;
+  }
+  
+  h2 {
+    font-family: var(--font-heading);
+    font-size: 3em;
+  }
+  
+  h3 {
+    font-family: var(--font-body);
+    font-size: 2em;
+  }
+  
+  
+  button {
+    font-family: var(--font-body);
+    font-weight: 900;
+    font-size: 1em;
+  }
+  
+  h4,
+  h5,
+  h6,
+  p,
+  li,
+  a,
+  span {
+    font-family: var(--font-body);
+    font-size: 1em;
+  }
+  
