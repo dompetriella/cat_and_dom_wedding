@@ -17,6 +17,8 @@
 </div>
 
 <style lang="scss">
+
+    // Change the outline and scoop radius in px here
 	$scoopRadius: 12;
 	$outlineWidth: 3;
 

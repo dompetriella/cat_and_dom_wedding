@@ -21,6 +21,8 @@
 </div>
 
 <style lang="scss">
+    
+    // Change the outline and scoop radius in px here
 	$scoopRadius: 12;
 	$outlineWidth: 3;
 
@@ -30,6 +32,7 @@
 
 	.button-parent {
 		position: relative;
+        width: 100%;
 	}
 
 	.button-outline {
@@ -44,7 +47,7 @@
 		padding: 1.5em 2.5em;
 		width: 100%;
 		background-color: var(--button-bg);
-		transition: background-color 250ms ease-in-out;
+		transition: background-color 250ms ease-out;
 	}
 
 	.button:hover {
