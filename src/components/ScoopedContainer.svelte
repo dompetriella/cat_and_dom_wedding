@@ -1,17 +1,22 @@
 <script lang="ts">
+	import type { Snippet } from "svelte";
+
 	let {
 		outlineColor = 'var(--green)',
-		backgroundColor = 'var(--light-green)'
+		backgroundColor = 'var(--light-green)',
+        children
+        
 	}: {
 		outlineColor?: string;
 		backgroundColor?: string;
+        children : Snippet
 	} = $props();
 </script>
 
 <div class="parent-container">
 	<div class="scooped-box outline" style="background-color: {outlineColor};">
 		<section class="scooped-box content" style="background-color: {backgroundColor}">
-            <slot />
+            {@render children()}
         </section>
 	</div>
 </div>
