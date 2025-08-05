@@ -9,7 +9,7 @@ import {
 const auth = new google.auth.GoogleAuth({
     credentials: {
         client_email: GOOGLE_SERVICE_ACCOUNT_EMAIL,
-        private_key: GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n') // This is crucial for deployment!
+        private_key: GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n')
     },
     scopes: ['https://www.googleapis.com/auth/spreadsheets']
 });

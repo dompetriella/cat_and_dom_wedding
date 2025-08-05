@@ -1,17 +1,15 @@
 
 const tierCutoff = 2;
 
-export const state = $state({
+export const guestState = $state({
     guestList: [] as string[],
     isLoading: false,
     error: null as string | null,
 });
 
 export const loadGuests = async () => {
-    state.isLoading = true;
-    state.error = null;
-
-    console.log('hello')
+    guestState.isLoading = true;
+    guestState.error = null;
 
     try {
         const response = await fetch('/api/');
@@ -28,17 +26,16 @@ export const loadGuests = async () => {
                 if (tier <= tierCutoff) {
                     return [row[0]];
                 }
-      
             }
             return [];
         });
 
         console.log(guests);
-        state.guestList = guests;
+        guestState.guestList = guests;
     } catch (e: any) {
-        state.error = e.message;
+        guestState.error = e.message;
         console.error('❌ FAILED:', e);
     } finally {
-        state.isLoading = false;
+        guestState.isLoading = false;
     }
 };
