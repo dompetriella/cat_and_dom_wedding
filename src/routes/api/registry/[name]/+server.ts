@@ -5,6 +5,7 @@ import {
 	GOOGLE_SERVICE_ACCOUNT_EMAIL,
 	GOOGLE_PRIVATE_KEY
 } from '$env/static/private';
+import { Global } from '$lib/server/global.server';
 
 const auth = new google.auth.GoogleAuth({
 	credentials: {
@@ -15,10 +16,6 @@ const auth = new google.auth.GoogleAuth({
 });
 
 const sheets = google.sheets({ version: 'v4', auth });
-
-const sheetNumber = 1;
-const guestColumn = 'A';
-const attendingColumn = 'E';
 
 export const PUT: RequestHandler = async ({ params, request }) => {
 	const guestName: string | undefined = params?.name;
@@ -37,7 +34,7 @@ export const PUT: RequestHandler = async ({ params, request }) => {
 	}
 
 	try {
-		const range = `Sheet${sheetNumber}!${guestColumn}:${guestColumn}`;
+		const range = `Sheet${Global.sheetNumber}!${Global.guestListColumn}:${Global.guestListColumn}`;
 		const response = await sheets.spreadsheets.values.get({
 			spreadsheetId: GOOGLE_SHEET_ID,
 			range
@@ -60,12 +57,12 @@ export const PUT: RequestHandler = async ({ params, request }) => {
 		return json({ error: "Couldn't find guest in retrieved data" }, { status: 400 });
 	}
 
-	const cellToUpdate = attendingColumn + (guestRowIndex + 1);
+	const cellToUpdate = Global.attendingColumn + (guestRowIndex + 1);
 
 	try {
 		await sheets.spreadsheets.values.update({
 			spreadsheetId: GOOGLE_SHEET_ID,
-			range: `Sheet${sheetNumber}!${cellToUpdate}`,
+			range: `Sheet${Global.sheetNumber}!${cellToUpdate}`,
 			valueInputOption: 'RAW',
 			requestBody: {
 				values: [[ isAttending ]]

@@ -5,6 +5,7 @@ import {
     GOOGLE_SERVICE_ACCOUNT_EMAIL,
     GOOGLE_PRIVATE_KEY
 } from '$env/static/private';
+import { Global } from '$lib/server/global.server';
 
 const auth = new google.auth.GoogleAuth({
     credentials: {
@@ -18,7 +19,7 @@ const sheets = google.sheets({ version: 'v4', auth });
 
 export async function GET() {
 	try {
-		const range = 'Sheet1!A:C';
+		const range = `Sheet${Global.sheetNumber}!${Global.guestListColumn}:${Global.tierColumn}`;
 		const response = await sheets.spreadsheets.values.get({
 			spreadsheetId: GOOGLE_SHEET_ID,
 			range
