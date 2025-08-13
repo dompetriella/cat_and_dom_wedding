@@ -15,6 +15,7 @@
 	let selectedGuestState = $state('');
 	let guestPlusOneState = $state('');
 	let attendingState = $state(false);
+	let plusOneAttendingState = $state(false);
 </script>
 
 <section>
@@ -32,8 +33,14 @@
 			</datalist>
 			<input type="text" autocomplete="on" list="guests" bind:value={selectedGuestState} />
 		</label>
+		<label>
+			Attending
+			<input type="checkbox" bind:checked={attendingState} />
+		</label>
+	</div>
 
-		<!-- <label for="plus-one">
+	<div>
+		<label for="plus-one">
 			Guest's +1
 			<datalist id="plus-one">
 				{#each rsvpState.guestList as guest}
@@ -41,13 +48,13 @@
 				{/each}
 			</datalist>
 			<input type="text" autocomplete="on" list="plus-one" bind:value={guestPlusOneState} />
-		</label> -->
-	</div>
+		</label>
 
-	<label>
-		Attending
-		<input type="checkbox" bind:checked={attendingState} />
-	</label>
+		<label>
+			Attending
+			<input type="checkbox" bind:checked={plusOneAttendingState} />
+		</label>
+	</div>
 
 	<ScoopedButton
 		text="submit"
@@ -55,7 +62,13 @@
 			console.log(selectedGuestState);
 			console.log(guestPlusOneState);
 			console.log(attendingState);
-            updateRegistryStatus(selectedGuestState, attendingState)
+			console.log(plusOneAttendingState)
+			updateRegistryStatus(
+				selectedGuestState,
+				attendingState,
+				guestPlusOneState,
+				plusOneAttendingState
+			);
 		}}
 	/>
 </section>

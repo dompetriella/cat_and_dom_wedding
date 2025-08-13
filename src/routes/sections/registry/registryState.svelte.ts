@@ -8,7 +8,19 @@ export const rsvpState = $state({
 	registryError: null as string | null
 });
 
-export const updateRegistryStatus = async (guestName: string, isAttending: boolean) => {
+export const updateRegistryStatus = async (
+	guestName: string,
+	isAttending: boolean,
+	guestPlusOneName: string,
+	guestPlusOneIsAttending: boolean = false
+) => {
+	await updateRegistryWithGuest(guestName, isAttending);
+	if (guestPlusOneName) {
+		await updateRegistryWithGuest(guestPlusOneName, guestPlusOneIsAttending);
+	}
+};
+
+const updateRegistryWithGuest = async (guestName: string, isAttending: boolean) => {
 	rsvpState.isRegistryLoading = true;
 	rsvpState.registryError = null;
 
@@ -16,7 +28,7 @@ export const updateRegistryStatus = async (guestName: string, isAttending: boole
 		const response = await fetch(`/api/registry/${guestName}`, {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify( {isAttending: isAttending ? "YES" : "NO" })
+			body: JSON.stringify({ isAttending: isAttending ? 'YES' : 'NO' })
 		});
 
 		if (!response.ok) {
